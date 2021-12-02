@@ -1,17 +1,19 @@
-import { FETCH_UNITS } from "../actionTypes";
-
-export const fetchUnits = (payload) => {
-  console.log(`fetching da stufffffff`);
-};
+import { FETCH_UNITS_REQUESTED, FETCH_UNITS_SUCCEEDED, FETCH_UNITS_FAILED } from "../actionTypes";
 
 const initialState = {
-  units: []
+  units: [], // array of, array of objects
+  isFetching: false,
+  error: null
 };
 
 const unitReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_UNITS:
-      return { ...state, units: "Units fetched" };
+    case FETCH_UNITS_REQUESTED:
+      return { ...initialState, isFetching: true };
+    case FETCH_UNITS_SUCCEEDED:
+      return { ...state, units: action.payload.units, isFetching: false };
+    case FETCH_UNITS_FAILED:
+      return { ...state, error: action.payload.error, isFetching: false };
   }
 };
 
