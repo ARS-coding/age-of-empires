@@ -4,7 +4,7 @@ import "./index.sass";
 
 const Navbar = () => {
   return (
-    <ul className="navbar d-flex justify-content-end p-0 mt-4 me-5">
+    <ul className="navbar d-flex justify-content-end mb-0 p-0 pt-4">
       <li>
         <NavLink to="/">Home</NavLink>
       </li>

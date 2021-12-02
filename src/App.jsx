@@ -22,7 +22,7 @@ function App() {
       <Router>
         <Navbar />
 
-        <hr className="my-4" />
+        <hr className="mt-4" />
 
         <Routes>
           <Route path="/" element={<Home />} />
