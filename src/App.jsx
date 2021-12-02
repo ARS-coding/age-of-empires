@@ -8,8 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import Units from "./components/Units";
 
-function App() {
+import "./App.sass";
+
+const App = () => {
   const dispatch = useDispatch();
   const unitsState = useSelector((unitsState) => unitsState);
 
@@ -26,11 +29,20 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/units" element={<p>units page</p>} />
+          <Route
+            path="/units"
+            element={
+              <Units
+                units={
+                  unitsState !== undefined && unitsState.units.length !== 0 ? unitsState.units : []
+                }
+              />
+            }
+          />
         </Routes>
       </Router>
     </Container>
   );
-}
+};
 
 export default App;

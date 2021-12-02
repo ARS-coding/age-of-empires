@@ -5,7 +5,7 @@ const initialState = {
   isFetching: false,
   error: null
 };
-
+// TODO: Change the slice convention into normal unitsReducer since we are not using any action creator functions anymore
 const unitReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_UNITS_REQUESTED:
