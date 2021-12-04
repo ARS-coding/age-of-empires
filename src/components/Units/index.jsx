@@ -27,7 +27,7 @@ const Units = ({ unitsState }) => {
     let query = allUnits.filter(({ age }) =>
       filteringParameters.age !== "All" ? age === filteringParameters.age : true
     );
-    console.log(query, "initial query");
+
     if (
       filteringParameters.isWoodEnabled === true &&
       filteringParameters.woodValue !== "excluded"
@@ -55,7 +55,6 @@ const Units = ({ unitsState }) => {
           unitObject?.cost?.Gold >= 0 && unitObject.cost.Gold <= filteringParameters.goldValue
       );
     }
-    console.log(query, "query after ifs");
     return query;
   };
 
@@ -66,7 +65,6 @@ const Units = ({ unitsState }) => {
       return;
     }
     setFilteredUnitsToBeRendered(filterUnits(unitsState));
-    console.log("filteringParameters has changed!");
   }, [parameterChangeSwitch]);
 
   const columns = [
@@ -99,7 +97,6 @@ const Units = ({ unitsState }) => {
       render: (unitObj) => (unitObj.cost ? costStringFromObject(unitObj.cost) : "no cost")
     }
   ];
-  console.log(filteringParameters);
 
   const onParameterValueChange = (parameterType, parameterName, value) => {
     setFilteringParameters((previousFilteringParameters) => ({
