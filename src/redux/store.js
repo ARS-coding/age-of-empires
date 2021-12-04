@@ -3,7 +3,7 @@ import thunkMiddleware from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import unitsReducer from "./slices/unitsSlice";
+import unitsReducer from "./reducers/unitsReducer";
 import unitsSaga from "./sagas/unitsSaga";
 
 const sagaMiddleware = createSagaMiddleware();

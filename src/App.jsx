@@ -6,15 +6,18 @@ import { UNITS_ENDPOINT_URL } from "./endpoints";
 import { FETCH_UNITS_REQUESTED } from "./redux/actionTypes";
 import { useDispatch, useSelector } from "react-redux";
 
+import { v4 as uuidv4 } from "uuid";
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Units from "./components/Units";
+import UnitDetails from "./components/UnitDetails/index.jsx";
 
 import "./App.sass";
 
 const App = () => {
   const dispatch = useDispatch();
-  const unitsState = useSelector((unitsState) => unitsState);
+  const unitsState = useSelector(({ units }) => units);
 
   useEffect(() => {
     (() => dispatch({ type: FETCH_UNITS_REQUESTED, payload: { UNITS_ENDPOINT_URL } }))();
@@ -30,15 +33,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
-            path="/units"
-            element={
-              <Units
-                units={
-                  unitsState !== undefined && unitsState.units.length !== 0 ? unitsState.units : []
-                }
-              />
-            }
-          />
+            path="units"
+            element={unitsState && unitsState.length > 0 && <Units unitsState={unitsState} />}>
+            <Route path=":unitUUID" element={<UnitDetails />} />
+          </Route>
         </Routes>
       </Router>
     </Container>
