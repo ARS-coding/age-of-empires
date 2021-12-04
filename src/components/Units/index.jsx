@@ -102,18 +102,11 @@ const Units = ({ unitsState }) => {
   console.log(filteringParameters);
 
   const onParameterValueChange = (parameterType, parameterName, value) => {
-    // if (parameterType === "switch") {
     setFilteringParameters((previousFilteringParameters) => ({
       ...previousFilteringParameters,
       [parameterName]:
         parameterType === "switch" ? !previousFilteringParameters[parameterName] : value
     }));
-    // } else if (parameterType === "range") {
-    //   setFilteringParameters((previousFilteringParameters) => ({
-    //     ...previousFilteringParameters,
-    //     [parameterName]: !previousFilteringParameters[parameterName]
-    //   }))
-    // }
   };
 
   return (
@@ -132,40 +125,68 @@ const Units = ({ unitsState }) => {
         <Button value="Imperial">Imperial</Button>
       </Group>
 
-      <Row className="my-4">
-        <Col lg={7} className="d-flex">
+      <Row>
+        <Col xs={24} sm={24} md={24} lg={7} className="d-flex mt-4 mb-2 mb-lg-4">
           <Col xs={10}>
             <Switch
-              onChange={(boolean) => onParameterValueChange("switch", "isWoodEnabled", boolean)}
+              onChange={(boolean) => {
+                onParameterValueChange("switch", "isWoodEnabled", boolean);
+                setParameterChangeSwitch((prevVal) => !prevVal);
+              }}
             />{" "}
             <span className="ms-1">Wood :</span>
           </Col>
-          <Col xs={14} className="pe-1" style={{ borderRight: "1px solid gray" }}>
-            <Slider />
+          <Col xs={14} className="pe-1">
+            <Slider
+              max={200}
+              onChange={(number) => {
+                onParameterValueChange("range", "woodValue", number);
+                setParameterChangeSwitch((prevVal) => !prevVal);
+              }}
+            />
           </Col>
         </Col>
 
-        <Col lg={7} className="d-flex mx-3">
+        <Col xs={24} sm={24} md={24} lg={7} className="d-flex my-2 my-lg-4 mx-lg-3 px-lg-3">
           <Col xs={10}>
             <Switch
-              onChange={(boolean) => onParameterValueChange("switch", "isFoodEnabled", boolean)}
+              onChange={(boolean) => {
+                onParameterValueChange("switch", "isFoodEnabled", boolean);
+                setParameterChangeSwitch((prevVal) => !prevVal);
+              }}
             />{" "}
             <span className="ms-1">Food :</span>
           </Col>
-          <Col xs={14} className="pe-1" style={{ borderRight: "1px solid gray" }}>
-            <Slider />
+          <Col xs={14} className="pe-1">
+            <Slider
+              max={200}
+              onChange={(number) => {
+                onParameterValueChange("range", "foodValue", number);
+                setParameterChangeSwitch((prevVal) => !prevVal);
+              }}
+            />
           </Col>
         </Col>
 
-        <Col lg={7} className="d-flex">
+        <Col xs={24} sm={24} md={24} lg={7} className="d-flex my-lg-4 mb-4 mt-2">
           <Col xs={10}>
             <Switch
-              onChange={(boolean) => onParameterValueChange("switch", "isGoldEnabled", boolean)}
+              onChange={(boolean) => {
+                onParameterValueChange("switch", "isGoldEnabled", boolean);
+                setParameterChangeSwitch((prevVal) => !prevVal);
+              }}
             />{" "}
             <span className="ms-1">Gold :</span>
           </Col>
-          <Col xs={14} className="pe-1" style={{ borderRight: "1px solid gray" }}>
-            <Slider />
+
+          <Col xs={14} className="pe-1">
+            <Slider
+              max={200}
+              onChange={(number) => {
+                onParameterValueChange("range", "goldValue", number);
+                setParameterChangeSwitch((prevVal) => !prevVal);
+              }}
+            />
           </Col>
         </Col>
       </Row>

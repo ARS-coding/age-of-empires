@@ -28,7 +28,7 @@ const App = () => {
       <Router>
         <Navbar />
 
-        <hr className="mt-4" />
+        <hr className="my-4" />
 
         <Routes>
           <Route path="/" element={<Home />} />
