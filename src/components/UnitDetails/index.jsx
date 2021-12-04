@@ -5,7 +5,6 @@ import { Table } from "antd";
 
 const UnitDetails = ({ unitsState }) => {
   const { uuid } = useParams();
-  console.log(unitsState, "eyoo");
   const selectedUnitObject = unitsState.filter((unitObject) => unitObject.uuid === uuid);
 
   const columns = [
