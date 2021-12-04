@@ -27,7 +27,6 @@ const Units = ({ unitsState }) => {
     let query = allUnits.filter(({ age }) =>
       filteringParameters.age !== "All" ? age === filteringParameters.age : true
     );
-
     if (
       filteringParameters.isWoodEnabled === true &&
       filteringParameters.woodValue !== "excluded"
@@ -78,8 +77,8 @@ const Units = ({ unitsState }) => {
       title: "Name",
       name: "name",
       key: "name",
-      render: ({ name, id }) => (
-        <Link key={id} to={id}>
+      render: ({ name, uuid }) => (
+        <Link key={uuid} to={uuid.toString()}>
           {name}
         </Link>
       )
@@ -187,6 +186,7 @@ const Units = ({ unitsState }) => {
           </Col>
         </Col>
       </Row>
+
       <Table
         rowKey={({ id }) => id}
         dataSource={filteredUnitsToBeRendered}

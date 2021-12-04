@@ -17,7 +17,9 @@ import "./App.sass";
 
 const App = () => {
   const dispatch = useDispatch();
-  const unitsState = useSelector(({ units }) => units);
+  const unitsState = useSelector(({ units }) =>
+    units.map((unitObject) => ({ ...unitObject, uuid: uuidv4() }))
+  );
 
   useEffect(() => {
     (() => dispatch({ type: FETCH_UNITS_REQUESTED, payload: { UNITS_ENDPOINT_URL } }))();
@@ -34,9 +36,17 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route
             path="units"
-            element={unitsState && unitsState.length > 0 && <Units unitsState={unitsState} />}>
-            <Route path=":unitUUID" element={<UnitDetails />} />
-          </Route>
+            element={
+              unitsState &&
+              unitsState.length > 0 && (
+                <Units unitsState={unitsState.length > 0 ? unitsState : []} />
+              )
+            }
+          />
+          <Route
+            path="units/:uuid"
+            element={<UnitDetails unitsState={unitsState.length > 0 ? unitsState : []} />}
+          />
         </Routes>
       </Router>
     </Container>
